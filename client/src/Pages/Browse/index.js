@@ -19,7 +19,7 @@ const Browse = () => {
 	useEffect(() => {
 		const fetchProdutcs = async () => {
 			try {
-				const {data} = await axios.get(`http://localhost:5000/api/product/all?skip=${skip}`)
+				const {data} = await axios.get(`/api/product/all?skip=${skip}`)
 				// console.log(data);
 				dispatch(setProduct(data))
 			} catch (error) {
