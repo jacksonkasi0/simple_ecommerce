@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { sendMail } = require("../../util");
 const verifyToken = require("../../middleware/verifyToken");
+const { authenticate } = require("../../middleware");
 
 
 router.post("/user/signup", async (req, res) => {
@@ -80,6 +81,16 @@ router.post("/user/login", async (req, res) => {
 	}
 
 });
+
+router.get("/api/user/getdata", authenticate, async (req, res) => {
+	try {
+		const user = await User.findById({ _id: req.userId });
+		res.status(200).json({ user, success: true, })	
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Somthing went wrong" })
+	}
+})
 
 router.get("/verify/:token", verifyToken, async (req, res) => {
 	try {
