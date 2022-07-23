@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import {useNavigate, Link} from 'react-router-dom'
 import axios from "../../axios";
+import {useDispatch} from 'react-redux'
+import {setUser} from '../../store/action/user'
 
 const Login = () => {
 
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch()
 
 	const [inputValue, setInputValue] = useState({
-		
 		email: "",
 		password: "",
 	})
@@ -34,7 +35,8 @@ const Login = () => {
 			const { data } = await axios.post('/api/user/login', inputValue);
 			alert(data?.msg);
 			if (data?.success && data?.token) {
-				localStorage.setItem("token", data?.token)										
+				localStorage.setItem("token", data?.token)
+				dispatch(setUser(data?.user))
 			}
 		  } catch (error) { 
 			alert(error.response?.data?.msg || error.message);

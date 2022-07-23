@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import Browse from './Pages/Browse';
+import Cart from './Pages/Cart';
 import Home from './Pages/Home'
 import Login from './Pages/Login';
 import Product from './Pages/Product';
@@ -22,9 +23,9 @@ const App = () => {
         <Route path="/product" element={<Browse />} />
         <Route path="/product/:id" element={<Product />} />
         
-        {/* <Route path='/cart' element={<PrivateRoute />}> */}
-          <Route path="/cart" element={<Signup />} />
-        {/* </Route> */}
+        <Route path='/cart' element={<PrivateRoute />}>
+          <Route path="/cart" element={<Cart />} />
+        </Route>
       </Routes>
     </Router>
   )
