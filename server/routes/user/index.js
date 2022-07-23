@@ -82,7 +82,7 @@ router.post("/user/login", async (req, res) => {
 
 });
 
-router.get("/api/user/getdata", authenticate, async (req, res) => {
+router.get("/user/getdata", authenticate, async (req, res) => {
 	try {
 		const user = await User.findById({ _id: req.userId });
 		res.status(200).json({ user, success: true, })	
