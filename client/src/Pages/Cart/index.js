@@ -8,7 +8,7 @@ const Cart = () => {
   return (
 	  <div>
 		  <p>Cart</p>
-		  <h1>you are login in</h1>
+		  <h1>you are logedin</h1>
 		  <pre>
 			  {JSON.stringify(user)}
 		  </pre>
