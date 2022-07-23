@@ -26,8 +26,6 @@ router.post("/user/signup", async (req, res) => {
 		password = hash;
 		loginType = 2;
 		const newUser = new User({ name, email, password, loginType });
-		console.log("kasi === " + newUser._id);
-
 		const token = await jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
 		const { info, error } = await sendMail(token, email, name);
 		await newUser.save()

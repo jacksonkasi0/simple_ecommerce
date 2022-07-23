@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-
+require('dotenv').config();
 
 const verifyToken = async (req, res, next) => {
 	try {
@@ -11,7 +11,7 @@ const verifyToken = async (req, res, next) => {
 			const user = await User.findById(data.userId);
 			if (user.verified) {
 				// res.status(400).json({ msg: 'Account has been verified already' })
-				res.redirect("http://localhost:3000")
+				res.redirect(process.env.CLIENT_SIDE_URL)
 				return;
 			} 
 			req.userId = data.userId;
